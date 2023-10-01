@@ -17,7 +17,10 @@ export class Book {
   @Column()
   description: string;
 
-  @ManyToOne(type => User, user => user.books)
+  @ManyToOne(type => User, user => user.books, {
+    cascade: true,
+    onDelete: "SET NULL"
+  })
   @JoinColumn()
   user: User;
 

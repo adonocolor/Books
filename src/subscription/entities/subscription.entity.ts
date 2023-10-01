@@ -14,7 +14,10 @@ export class Subscription {
   @CreateDateColumn({ type: 'timestamp', nullable: true})
   expDate: Date;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, {
+    cascade: true,
+    onDelete: "CASCADE"
+  })
   @JoinColumn()
   user: User;
 }
