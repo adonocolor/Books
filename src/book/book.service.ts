@@ -17,7 +17,12 @@ export class BookService {
   private readonly subscriptionRepository: Repository<Subscription>;
 
   async create(createBookDto: CreateBookDto) {
-    let book = new Book(createBookDto.title, createBookDto.description);
+
+    if (createBookDto.yearOfRelease > new Date().getFullYear()) {
+      throw new HttpException('Year of release does not correspond to the reality!', HttpStatus.BAD_REQUEST);
+    }
+
+    let book = new Book(createBookDto.title, createBookDto.description, createBookDto.yearOfRelease);
     return await this.bookRepository.save(book);
   }
 

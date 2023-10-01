@@ -11,15 +11,19 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @OneToMany(type => Book, book => book.user)
   books: Book[];
 
-  @OneToOne(() => Subscription)
+  @OneToOne(() => Subscription, {
+    cascade: true,
+    onDelete: "CASCADE",
+    nullable: false
+  })
   subscription: Subscription;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   public createdAt!: Date;
 }

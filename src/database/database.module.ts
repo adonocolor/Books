@@ -15,7 +15,7 @@ import * as process from "process";
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
       entities: [User, Book, Subscription],
-      synchronize: false,
+      synchronize: true,
       autoLoadEntities: true,
     }),
   ],

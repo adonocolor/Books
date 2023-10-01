@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Query, ParseIntPipe, HttpStatus } from "@nestjs/common";
+import { Controller, Post, Body, Patch, Query, ParseIntPipe, HttpStatus, HttpException } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { CreateBookDto } from "./dto/create-book.dto";
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
@@ -15,6 +15,7 @@ export class BookController {
   })
   @ApiBody({type: CreateBookDto, description: `'тело' книги`})
   @ApiResponse({ status: HttpStatus.CREATED })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Year of release does not correspond to the reality!' })
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
     return this.bookService.create(createBookDto);

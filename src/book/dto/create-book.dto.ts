@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateBookDto {
@@ -10,4 +10,8 @@ export class CreateBookDto {
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @ApiProperty({ description: "Год издания книги", nullable: false })
+  @IsNumber()
+  yearOfRelease: number;
 }

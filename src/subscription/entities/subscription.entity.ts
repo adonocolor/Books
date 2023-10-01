@@ -11,12 +11,13 @@ export class Subscription {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn({ type: 'timestamp', nullable: true})
+  @CreateDateColumn({ nullable: true})
   expDate: Date;
 
   @OneToOne(() => User, {
     cascade: true,
-    onDelete: "CASCADE"
+    onDelete: "CASCADE",
+    nullable: false,
   })
   @JoinColumn()
   user: User;
