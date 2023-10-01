@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseIntPipe } from "@nestjs/common";
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 
@@ -12,12 +12,12 @@ export class BookController {
   }
 
   @Patch('/give')
-  give(@Query('userId') userId: number, @Query('bookId') bookId : number) {
-    return this.bookService.give(userId, bookId);
+  give(@Query('userId', ParseIntPipe) userId: string, @Query('bookId', ParseIntPipe) bookId : string) {
+    return this.bookService.give(+userId, +bookId);
   }
 
   @Patch('/return')
-  return(@Query('userId') userId : number, @Query('bookId') bookId: number) {
-    return this.bookService.return(userId, bookId);
+  return(@Query('userId', ParseIntPipe) userId : string, @Query('bookId', ParseIntPipe) bookId: string) {
+    return this.bookService.return(+userId, +bookId);
   }
 }
