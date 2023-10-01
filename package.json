@@ -1,8 +1,8 @@
 {
   "name": "books",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.8.0",
+  "description": "books api!",
+  "author": "adonocolor",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
